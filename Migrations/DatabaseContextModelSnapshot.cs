@@ -16,74 +16,129 @@ namespace NLW.Migrations
             modelBuilder
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
                 .HasAnnotation("ProductVersion", "3.1.4")
-                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+                .HasAnnotation("Relational:MaxIdentifierLength", 63)
+                .HasAnnotation("Relational:Sequence:.Id", "'Id', '', '1', '1', '', '', 'Int32', 'False'");
 
             modelBuilder.Entity("NLW.Models.Database.Item", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("Image")
                         .IsRequired()
+                        .HasColumnName("image")
                         .HasColumnType("text");
 
                     b.Property<string>("Title")
                         .IsRequired()
+                        .HasColumnName("title")
+                        .HasColumnType("text");
+
+                    b.Property<string>("text")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Items");
+                    b.ToTable("items");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Image = "lampadas.svg",
+                            Title = "Lâmpadas"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Image = "baterias.svg",
+                            Title = "Pilhas e Baterias"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Image = "papeis-papelao.svg",
+                            Title = "Papéis e Papelão"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Image = "eletronicos.svg",
+                            Title = "Resíduos Eletrônicos"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Image = "organicos.svg",
+                            Title = "Resíduos Orgânicos"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Image = "oleo.svg",
+                            Title = "Óleo de Cozinha"
+                        });
                 });
 
             modelBuilder.Entity("NLW.Models.Database.Point", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("City")
                         .IsRequired()
+                        .HasColumnName("city")
                         .HasColumnType("text");
 
                     b.Property<string>("Email")
                         .IsRequired()
+                        .HasColumnName("email")
                         .HasColumnType("text");
 
                     b.Property<string>("Image")
                         .IsRequired()
+                        .HasColumnName("image")
                         .HasColumnType("text");
 
                     b.Property<decimal>("Latidude")
+                        .HasColumnName("latidude")
                         .HasColumnType("numeric");
 
                     b.Property<decimal>("Longitude")
+                        .HasColumnName("longitude")
                         .HasColumnType("numeric");
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasColumnName("name")
                         .HasColumnType("text");
 
                     b.Property<string>("Uf")
                         .IsRequired()
+                        .HasColumnName("uf")
                         .HasColumnType("text");
 
                     b.Property<string>("Whatsapp")
                         .IsRequired()
+                        .HasColumnName("whatsapp")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Points");
+                    b.ToTable("points");
                 });
 
-            modelBuilder.Entity("NLW.Models.Database.PointItems", b =>
+            modelBuilder.Entity("NLW.Models.Database.PointItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
@@ -91,6 +146,7 @@ namespace NLW.Migrations
                         .HasColumnType("integer");
 
                     b.Property<int>("Point_id")
+                        .HasColumnName("point_id")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
@@ -99,10 +155,10 @@ namespace NLW.Migrations
 
                     b.HasIndex("Point_id");
 
-                    b.ToTable("PointItems");
+                    b.ToTable("pointitems");
                 });
 
-            modelBuilder.Entity("NLW.Models.Database.PointItems", b =>
+            modelBuilder.Entity("NLW.Models.Database.PointItem", b =>
                 {
                     b.HasOne("NLW.Models.Database.Item", "Items")
                         .WithMany("PointItems")

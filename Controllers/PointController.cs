@@ -89,7 +89,7 @@ namespace NLW.Controllers
 
                 foreach (var item in newPoint.IntesId)
                 {
-                    var pointItems = new PointItems
+                    var pointItems = new PointItem
                     {
                         Point_id = point.Id,
                         Item_id = item
