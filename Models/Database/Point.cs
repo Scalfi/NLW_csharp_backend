@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace NLW.Models.Database
 {
@@ -33,6 +35,11 @@ namespace NLW.Models.Database
         public string Uf { get; set; }
 
         public HashSet<PointItems> PointItems { get; set; }
+        
+        [NotMapped]
+        [JsonIgnore]
+        public List<int> IntesId { get; set; }
+
 
     }
 }
