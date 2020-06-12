@@ -7,8 +7,9 @@ using System.Linq;
 
 namespace NLW.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+
+    [Route("api/[controller]")]
 
     public class PointController : ControllerBase
     {
@@ -98,7 +99,7 @@ namespace NLW.Controllers
                     await _db.PointItems.AddAsync(pointItems);
                 }
 
-               await _db.SaveChangesAsync();
+                await _db.SaveChangesAsync();
             }
 
             return BadRequest(ModelState.IsValid);
