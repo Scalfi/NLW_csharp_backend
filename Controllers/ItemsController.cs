@@ -18,7 +18,7 @@ namespace NLW.Controllers
         {
             _db = db;
         }
-        public async Task<IActionResult> GetAsync([FromQuery] string city, string uf, string itens)
+        public async Task<IActionResult> GetAsync()
         {
 
             var arrayItens = await _db.Items

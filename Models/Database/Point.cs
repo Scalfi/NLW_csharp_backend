@@ -47,7 +47,6 @@ namespace NLW.Models.Database
         public HashSet<PointItem> PointItems { get; set; }
         
         [NotMapped]
-        [JsonIgnore]
         public List<int> IntesId { get; set; }
 
 

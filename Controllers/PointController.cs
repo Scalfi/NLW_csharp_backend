@@ -32,12 +32,13 @@ namespace NLW.Controllers
 
 
             var points = await _db.PointItems
-                                  .Include(pointItems => pointItems.Points)
-                                  .Where(pointItems => arrayItens.Contains(pointItems.Item_id))
-                                  .Where(pointItems => pointItems.Points.City.Equals(city))
-                                  .Where(pointItems => pointItems.Points.Uf.Equals(uf))
-                                  .Select(pointItems => pointItems.Points)
-                                  .ToListAsync();
+                                .Include(pointItems => pointItems.Points)
+                                .Where(pointItems => arrayItens.Contains(pointItems.Item_id))
+                                .Where(pointItems => pointItems.Points.City.Equals(city))
+                                .Where(pointItems => pointItems.Points.Uf.Equals(uf))
+                                .Select(pointItems => pointItems.Points)
+                                .Distinct()
+                                .ToListAsync();
 
 
             return Ok(points);
@@ -48,7 +49,7 @@ namespace NLW.Controllers
         {
             var point = await _db.Points.Where(point => point.Id.Equals(id)).FirstOrDefaultAsync();
 
-            if (point != null)
+            if (point == null)
             {
                 return NotFound("Point not found");
             }
